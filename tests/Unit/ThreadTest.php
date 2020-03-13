@@ -12,16 +12,14 @@ class ThreadTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /** @test */
-    function a_thread_has_replies()
+    public function test_a_thread_has_replies()
     {
         $thread = factory(Thread::class)->create();
 
         $this->assertInstanceOf(Collection::class, $thread->replies);
     }
 
-    /** @test */
-    function it_has_an_owner()
+    public function test_it_has_an_owner()
     {
         $reply = factory(Thread::class)->create();
 
