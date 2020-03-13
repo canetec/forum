@@ -1,21 +1,32 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $thread->title }}</title>
-</head>
-<body>
-<h1>{{ $thread->title }}</h1>
-<p>{{ $thread->body }}</p>
-<hr>
-@foreach($thread->replies as $reply)
-    <h2>{{ $reply->owner->name }} said {{ $reply->created_at->diffForHumans() }}:</h2>
-    <p>{{ $reply->body }}</p>
-    @if( ! $loop->last)
-        <hr>
-    @endif
-@endforeach
-</body>
-</html>
+@extends('layouts.app')
+@section('title', 'Threads')
+
+@section('content')
+    <div class="card">
+        <div class="card-header">
+            <h1 class="card-title">{{ $thread->title }}</h1>
+        </div>
+        <div class="card-body">
+            <p>{{ $thread->body }}</p>
+        </div>
+    </div>
+    <hr>
+    @foreach($thread->replies as $reply)
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <a href="#">
+                        {{ $reply->owner->name }}
+                    </a> said
+                    <time title="{{ $reply->created_at }}">{{ $reply->created_at->diffForHumans() }}:</time>
+                </h2>
+            </div>
+            <div class="card-body">
+                <p>{{ $reply->body }}</p>
+            </div>
+        </div>
+        @if( ! $loop->last)
+            <hr>
+        @endif
+    @endforeach
+@endsection
