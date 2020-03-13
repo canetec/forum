@@ -9,5 +9,13 @@
 <body>
 <h1>{{ $thread->title }}</h1>
 <p>{{ $thread->body }}</p>
+<hr>
+@foreach($thread->replies as $reply)
+    <h2>{{ $reply->owner->name }} said {{ $reply->created_at->diffForHumans() }}:</h2>
+    <p>{{ $reply->body }}</p>
+    @if( ! $loop->last)
+        <hr>
+    @endif
+@endforeach
 </body>
 </html>
