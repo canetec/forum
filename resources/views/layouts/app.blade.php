@@ -9,7 +9,7 @@
 </head>
 <body>
 <nav class="nav bg-light mb-2">
-    <a class="nav-link" href="/threads">Threads</a>
+    <a class="nav-link" href="{{ route('threads.index') }}">Threads</a>
     @guest
         <a class="nav-link" href="{{ route('login') }}">Log in</a>
         <a class="nav-link" href="{{ route('register') }}">Register</a>
@@ -17,7 +17,7 @@
     @auth
         <form action="{{ route('logout') }}" method="POST">
             @csrf
-            <a class="nav-link" href="/logout" onclick="event.preventDefault();this.parentElement.submit()">Log out</a>
+            <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();this.parentElement.submit()">Log out</a>
         </form>
     @endauth
 </nav>

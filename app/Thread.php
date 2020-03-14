@@ -8,7 +8,9 @@ class Thread extends Model
 {
     public function path()
     {
-        return '/thread/' . $this->id;
+        return route('threads.show', [
+            $this->id,
+        ]);
     }
 
     public function replies()
