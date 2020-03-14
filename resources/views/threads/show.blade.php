@@ -29,4 +29,21 @@
             <hr>
         @endif
     @endforeach
+    <hr>
+    @auth
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Add your reply</h3>
+            </div>
+            <div class="card-body">
+                <form action="{{ route('replies.store', $thread->id) }}" method="POST" id="addReply">
+                    @csrf
+                    <textarea name="body" id="body" cols="30" rows="10" class="form-control" required>{{ old('body') }}</textarea>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary" form="addReply">Add reply</button>
+            </div>
+        </div>
+    @endauth
 @endsection
