@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/threads', 'ThreadController@index');
 Route::get('/thread/{thread}', 'ThreadController@show');
+Route::post('/thread/{thread}/replies', 'ReplyController@store');

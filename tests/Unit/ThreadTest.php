@@ -12,7 +12,7 @@ class ThreadTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function test_a_thread_has_replies()
+    public function test_it_has_replies()
     {
         $thread = factory(Thread::class)->create();
 
@@ -24,5 +24,17 @@ class ThreadTest extends TestCase
         $reply = factory(Thread::class)->create();
 
         $this->assertInstanceOf(User::class, $reply->owner);
+    }
+
+    public function test_it_can_add_a_reply()
+    {
+        $thread = factory(Thread::class)->create();
+
+        $thread->addReply([
+            'body' => 'Lorem ipsum',
+            'user_id' => 1,
+        ]);
+
+        $this->assertCount(1, $thread->replies);
     }
 }
