@@ -8,6 +8,19 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
+<nav class="nav bg-light mb-2">
+    <a class="nav-link" href="/threads">Threads</a>
+    @guest
+        <a class="nav-link" href="{{ route('login') }}">Log in</a>
+        <a class="nav-link" href="{{ route('register') }}">Register</a>
+    @endguest
+    @auth
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <a class="nav-link" href="/logout" onclick="event.preventDefault();this.parentElement.submit()">Log out</a>
+        </form>
+    @endauth
+</nav>
 <div class="container">
     @yield('content')
 </div>
