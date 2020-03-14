@@ -20,4 +20,12 @@ class Thread extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function addReply(array $reply): Reply
+    {
+        return $this->replies()->create([
+            'user_id' => $this->user_id,
+            'body' => $reply['body'],
+        ]);
+    }
 }
