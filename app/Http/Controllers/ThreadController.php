@@ -9,6 +9,12 @@ use Illuminate\View\View;
 
 class ThreadController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')
+            ->only('store');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -39,7 +45,10 @@ class ThreadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->user()->threads()->create([
+            'title' => $request->title,
+            'body' => $request->body,
+        ]);
     }
 
     /**
