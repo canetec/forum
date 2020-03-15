@@ -22,13 +22,13 @@ class ReadThreadsTest extends TestCase
 
     public function test_a_user_can_view_all_threads()
     {
-        $this->get('/threads')
+        $this->get(route('threads.index'))
             ->assertSee($this->thread->title);
     }
 
     public function test_a_user_can_read_a_single_thread()
     {
-        $this->get('/thread/' . $this->thread->id)
+        $this->get($this->thread->path())
             ->assertSee($this->thread->title);
     }
 
@@ -37,19 +37,19 @@ class ReadThreadsTest extends TestCase
         $reply = factory(Reply::class)
             ->create(['thread_id' => $this->thread->id]);
 
-        $this->get('/thread/' . $this->thread->id)
+        $this->get($this->thread->path())
             ->assertSee($reply->body);
     }
 
     public function test_a_user_can_see_when_the_thread_was_created()
     {
-        $this->get('/threads')
+        $this->get(route('threads.index'))
             ->assertSee($this->thread->created_at);
     }
 
     public function test_a_user_can_see_who_created_the_thread()
     {
-        $this->get('/threads')
+        $this->get(route('threads.index'))
             ->assertSee($this->thread->owner->name);
     }
 }
