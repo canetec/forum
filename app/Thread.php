@@ -26,7 +26,7 @@ class Thread extends Model
     public function addReply(array $reply): Reply
     {
         return $this->replies()->create([
-            'user_id' => $this->user_id,
+            'user_id' => $reply['user_id'],
             'body' => $reply['body'],
         ]);
     }
