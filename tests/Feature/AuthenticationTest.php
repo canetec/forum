@@ -5,11 +5,13 @@ namespace Tests\Feature;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class AuthenticationTest extends TestCase
 {
     use DatabaseMigrations;
+    use WithFaker;
 
     public function test_a_user_can_log_in_with_valid_credentials()
     {
@@ -46,5 +48,17 @@ class AuthenticationTest extends TestCase
             'email' => $user->email,
             'password' => 'correct mule battery staple',
         ]);
+    }
+
+    public function test_a_user_can_register()
+    {
+        $this->post(route('register'), [
+            'name' => $this->faker->name,
+            'email' => $this->faker->email,
+            'password' => 'correct horse battery staple',
+            'password_confirmation' => 'correct horse battery staple',
+        ]);
+
+        $this->assertSame(1, User::count());
     }
 }
