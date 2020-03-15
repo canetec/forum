@@ -10,8 +10,10 @@
             <p>{{ $thread->body }}</p>
         </div>
     </div>
-    <hr>
     @foreach($thread->replies as $reply)
+        @if($loop->first)
+            <hr>
+        @endif
         <div class="card">
             <div class="card-header">
                 <h2 class="card-title">

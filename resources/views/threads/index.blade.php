@@ -3,6 +3,9 @@
 
 @section('content')
     <h1>Forum threads</h1>
+    <section class="my-2 py-2">
+        <a class="btn btn-primary text-white" href="{{ route('threads.create') }}">Start a new thread</a>
+    </section>
     @foreach($threads as $thread)
         <article>
             <h2><a href="{{ $thread->path() }}">{{ $thread->title }}</a></h2>
