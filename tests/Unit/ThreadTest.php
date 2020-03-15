@@ -29,12 +29,14 @@ class ThreadTest extends TestCase
     public function test_it_can_add_a_reply()
     {
         $thread = factory(Thread::class)->create();
+        $replier = factory(User::class)->create();
 
         $thread->addReply([
             'body' => 'Lorem ipsum',
-            'user_id' => 1,
+            'user_id' => $replier->id,
         ]);
 
         $this->assertCount(1, $thread->replies);
+        $this->assertSame($replier->id, $thread->replies()->first()->owner->id);
     }
 }
