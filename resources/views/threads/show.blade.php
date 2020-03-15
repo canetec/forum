@@ -5,6 +5,9 @@
     <div class="card">
         <div class="card-header">
             <h1 class="card-title">{{ $thread->title }}</h1>
+            <small>By <a href="#">{{ $thread->owner->name }}</a>,
+                <time title="{{ $thread->created_at }}">{{ $thread->created_at->diffForHumans() }}</time>
+            </small>
         </div>
         <div class="card-body">
             <p>{{ $thread->body }}</p>
