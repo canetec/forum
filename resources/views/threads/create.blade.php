@@ -10,6 +10,13 @@
         <form action="{{ route('threads.store') }}" method="POST" id="createThread">
             @csrf
             <div class="form-group">
+                <select name="channel_id" id="channel_id" class="form-control" required>
+                    @foreach($channels as $channel)
+                        <option value="{{ $channel->id }}" @if(old('channel_id') == $channel->id) selected @endif>{{ $channel->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
                 <input type="text" name="title" id="title" class="form-control" placeholder="Title" value="{{ old('title') }}" required>
             </div>
             <div class="form-group">

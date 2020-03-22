@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Channel;
 use App\Thread;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -34,7 +35,9 @@ class ThreadController extends Controller
      */
     public function create()
     {
-        return view('threads.create');
+        $channels = Channel::all();
+
+        return view('threads.create', compact('channels'));
     }
 
     /**
@@ -51,17 +54,17 @@ class ThreadController extends Controller
             'body' => $request->body,
         ]);
 
-        return redirect()
-            ->route('threads.show', $thread->id);
+        return redirect($thread->path());
     }
 
     /**
      * Display the specified resource.
      *
+     * @param Channel $channel
      * @param Thread $thread
      * @return Response
      */
-    public function show(Thread $thread)
+    public function show(Channel $channel, Thread $thread)
     {
         return view('threads.show', compact('thread'));
     }

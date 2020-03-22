@@ -38,6 +38,7 @@ class Thread extends Model
     public function path()
     {
         return route('threads.show', [
+            $this->channel->slug,
             $this->id,
         ]);
     }

@@ -41,7 +41,7 @@
                 <h3 class="card-title">Add your reply</h3>
             </div>
             <div class="card-body">
-                <form action="{{ route('replies.store', $thread->id) }}" method="POST" id="addReply">
+                <form action="{{ route('replies.store', [$thread->channel->slug, $thread->id]) }}" method="POST" id="addReply">
                     @csrf
                     <textarea name="body" id="body" cols="30" rows="10" class="form-control" required>{{ old('body') }}</textarea>
                 </form>

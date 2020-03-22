@@ -29,7 +29,10 @@ class ParticipateInThreadsTest extends TestCase
             'body' => $this->faker->sentence,
         ]);
 
-        $this->post(route('replies.store', $thread->id), $reply->toArray());
+        $this->post(route('replies.store', [
+            $thread->channel_id,
+            $thread->id,
+        ]), $reply->toArray());
 
         $this->get($thread->path())->assertSee($reply->body);
     }
