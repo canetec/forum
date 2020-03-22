@@ -47,6 +47,7 @@ class ThreadController extends Controller
     {
         $thread = $request->user()->threads()->create([
             'title' => $request->title,
+            'channel_id' => $request->channel_id,
             'body' => $request->body,
         ]);
 
