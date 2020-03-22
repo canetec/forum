@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Channel;
 use App\Thread;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -31,6 +32,7 @@ class CreateThreadsTest extends TestCase
 
         $this->post(route('threads.store'), [
             'title' => $this->faker->sentence,
+            'channel_id' => factory(Channel::class)->create()->id,
             'body' => $this->faker->paragraph,
         ]);
 

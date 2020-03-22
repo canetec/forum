@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Channel;
 use App\Thread;
 use App\User;
 use Illuminate\Database\Eloquent\Collection;
@@ -24,6 +25,13 @@ class ThreadTest extends TestCase
         $reply = factory(Thread::class)->create();
 
         $this->assertInstanceOf(User::class, $reply->owner);
+    }
+
+    public function test_it_belongs_to_a_channel()
+    {
+        $thread = factory(Thread::class)->create();
+
+        $this->assertInstanceOf(Channel::class, $thread->channel);
     }
 
     public function test_it_can_add_a_reply()
