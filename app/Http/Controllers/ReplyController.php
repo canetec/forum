@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Channel;
 use App\Reply;
 use App\Thread;
 use Illuminate\Http\Request;
@@ -37,10 +38,12 @@ class ReplyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param Channel $channel
+     * @param Thread $thread
      * @param Request $request
      * @return Response
      */
-    public function store(Thread $thread, Request $request)
+    public function store(Channel $channel, Thread $thread, Request $request)
     {
         $thread->addReply([
             'body' => $request->body,
