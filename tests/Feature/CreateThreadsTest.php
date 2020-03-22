@@ -13,7 +13,18 @@ class CreateThreadsTest extends TestCase
     use DatabaseMigrations;
     use WithFaker;
 
-    public function test_a_user_may_create_a_thread()
+    public function test_guests_may_not_create_threads()
+    {
+        $this->get(route('threads.create'))
+            ->assertRedirect(route('login'));
+
+        $this->post(route('threads.store'), [
+            'title' => $this->faker->sentence,
+            'body' => $this->faker->paragraph,
+        ])->assertRedirect(route('login'));
+    }
+
+    public function test_authenticated_users_may_create_threads()
     {
         $user = factory(User::class)->create();
         $this->be($user);
@@ -27,15 +38,5 @@ class CreateThreadsTest extends TestCase
         $this->get(route('threads.index'))
             ->assertSee($thread->title)
             ->assertSee($thread->body);
-    }
-
-    public function test_a_guest_user_may_not_create_a_thread()
-    {
-        $this->post(route('threads.store'), [
-            'title' => $this->faker->sentence,
-            'body' => $this->faker->paragraph,
-        ]);
-
-        $this->assertCount(0, Thread::all());
     }
 }
