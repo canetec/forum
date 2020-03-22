@@ -25,12 +25,12 @@ class ParticipateInThreadsTest extends TestCase
         $thread = factory(Thread::class)->create();
         $reply = factory(Reply::class)->make([
             'user_id' => $user->id,
-            'thead_id' => $thread->id,
+            'thread_id' => $thread->id,
             'body' => $this->faker->sentence,
         ]);
 
         $this->post(route('replies.store', [
-            $thread->channel_id,
+            $thread->channel->slug,
             $thread->id,
         ]), $reply->toArray());
 
