@@ -36,4 +36,21 @@ class ParticipateInThreadsTest extends TestCase
 
         $this->get($thread->path())->assertSee($reply->body);
     }
+
+    /** @test */
+    public function a_reply_requires_a_body()
+    {
+        $user = factory(User::class)->create();
+        $this->be($user);
+
+        $thread = factory(Thread::class)->create();
+        $reply = factory(Reply::class)->make(['body' => null]);
+
+        $response = $this->post(route('replies.store', [
+            $thread->channel->slug,
+            $thread->id,
+        ]), $reply->toArray());
+
+        $response->assertSessionHasErrors('body');
+    }
 }
