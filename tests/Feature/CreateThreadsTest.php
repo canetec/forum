@@ -30,14 +30,15 @@ class CreateThreadsTest extends TestCase
         $user = factory(User::class)->create();
         $this->be($user);
 
-        $this->post(route('threads.store'), [
+        $thread = factory(Thread::class)->make([
             'title' => $this->faker->sentence,
             'channel_id' => factory(Channel::class)->create()->id,
             'body' => $this->faker->paragraph,
         ]);
 
-        $thread = Thread::first();
-        $this->get(route('threads.index'))
+        $response = $this->post(route('threads.store'), $thread->toArray());
+
+        $this->get($response->headers->get('Location'))
             ->assertSee($thread->title)
             ->assertSee($thread->body);
     }
