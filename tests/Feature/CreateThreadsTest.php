@@ -25,7 +25,7 @@ class CreateThreadsTest extends TestCase
         ])->assertRedirect(route('login'));
     }
 
-    public function test_authenticated_users_may_create_threads()
+    public function test_an_authenticated_user_can_create_new_forum_threads()
     {
         $user = factory(User::class)->create();
         $this->be($user);
@@ -43,21 +43,21 @@ class CreateThreadsTest extends TestCase
             ->assertSee($thread->body);
     }
 
-    function test_a_thread_requires_a_title()
+    public function test_a_thread_requires_a_title()
     {
         $this->publishThread([
             'title' => null,
         ])->assertSessionHasErrors('title');
     }
 
-    function test_a_thread_requires_a_body()
+    public function test_a_thread_requires_a_body()
     {
         $this->publishThread([
             'body' => null,
         ])->assertSessionHasErrors('body');
     }
 
-    function test_a_thread_requires_a_valid_channel()
+    public function test_a_thread_requires_a_valid_channel()
     {
         factory(Channel::class, 2)->create();
 
