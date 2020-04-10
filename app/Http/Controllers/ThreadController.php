@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Channel;
 use App\Thread;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\View\View;
 
 class ThreadController extends Controller
 {
@@ -19,11 +19,22 @@ class ThreadController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return View
      */
-    public function index(): View
+    public function index()
     {
-        $threads = Thread::latest()->get();
+        if (request()->has('by')) {
+            $threads = Thread::whereUserId(User::where('name', request()->get('by'))->first()->id)->get();
+        } elseif (request()->has('popular')) {
+            $threads = Thread::withCount('replies')
+                ->orderBy('replies_count', 'desc')
+                ->get();
+        } else {
+            $threads = Thread::latest()->get();
+        }
+
+        if (request()->expectsJson()) {
+            return $threads->toArray();
+        }
 
         return view('threads.index', compact('threads'));
     }
