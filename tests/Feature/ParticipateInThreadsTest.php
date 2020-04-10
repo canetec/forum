@@ -14,11 +14,16 @@ class ParticipateInThreadsTest extends TestCase
     use DatabaseMigrations;
     use WithFaker;
 
-    /** @test */
-    public function an_authenticated_user_can_participate_in_a_thread()
+    public function test_unauthenticated_users_may_not_add_replies()
     {
-        $this->withoutExceptionHandling();
+        $thread = factory(Thread::class)->create();
 
+        $this->post(route('replies.store', [$thread->channel, $thread]))
+            ->assertRedirect('/login');
+    }
+
+    public function test_an_authenticated_user_may_participate_in_forum_threads()
+    {
         $user = factory(User::class)->create();
         $this->be($user);
 
@@ -37,8 +42,7 @@ class ParticipateInThreadsTest extends TestCase
         $this->get($thread->path())->assertSee($reply->body);
     }
 
-    /** @test */
-    public function a_reply_requires_a_body()
+    public function test_a_reply_requires_a_body()
     {
         $user = factory(User::class)->create();
         $this->be($user);
