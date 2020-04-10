@@ -20,7 +20,7 @@ class ThreadTest extends TestCase
         $this->assertInstanceOf(Collection::class, $thread->replies);
     }
 
-    public function test_it_has_an_owner()
+    public function test_it_has_a_creator()
     {
         $reply = factory(Thread::class)->create();
 
