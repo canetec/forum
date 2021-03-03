@@ -18,16 +18,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\User $owner
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Reply[] $replies
  * @property-read int|null $replies_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Thread newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Thread newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Thread query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Thread whereBody($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Thread whereChannelId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Thread whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Thread whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Thread whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Thread whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Thread whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Thread newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Thread newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Thread query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Thread whereBody($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Thread whereChannelId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Thread whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Thread whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Thread whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Thread whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Thread whereUserId($value)
  * @mixin \Eloquent
  */
 class Thread extends Model
