@@ -12,14 +12,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $slug
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Channel newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Channel newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Channel query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Channel whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Channel whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Channel whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Channel whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Channel whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Thread[] $threads
+ * @property-read int|null $threads_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Channel newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Channel newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Channel query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Channel whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Channel whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Channel whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Channel whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Channel whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class Channel extends Model

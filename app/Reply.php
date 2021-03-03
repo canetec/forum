@@ -14,15 +14,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\User $owner
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Reply newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Reply newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Reply query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Reply whereBody($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Reply whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Reply whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Reply whereThreadId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Reply whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Reply whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reply newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Reply newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Reply query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Reply whereBody($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reply whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reply whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reply whereThreadId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reply whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reply whereUserId($value)
  * @mixin \Eloquent
  */
 class Reply extends Model
