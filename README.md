@@ -4,8 +4,8 @@ This a forum based on the Laracasts series [Let's Build A Forum with Laravel and
 
 ## Requirements
 
-- Composer
-- PHP 7.4
+- Composer 2
+- PHP 8
 - MySQL | MSSQL | PostgreSQL | SQLite
 
 ## Instructions
